@@ -15,7 +15,8 @@ function App() {
     <>
       <NavBar />
         <h1>
-           CS Developer Track
+          CS Developer Tracks
+          hello
         </h1>
         <ProgressSummary />
         <CourseList/>

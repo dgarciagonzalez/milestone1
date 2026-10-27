@@ -14,7 +14,7 @@ function useFetch(url){
                 return resp.json()
             })
             .then(data => {
-                setData(data)
+                stData(data)
                 setIsPending(false)
                 setError(null)
             })
