@@ -5,6 +5,8 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 import NavBar from "./components/NavBar.jsx";
 import ProgressSummary from "./components/ProgressSummary.jsx";
+import CourseCard from "./components/CourseCard.jsx";
+import CourseList from "./components/CourseList.jsx";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +15,8 @@ function App() {
     <>
       <NavBar />
         <ProgressSummary />
+        <CourseList/>
+        <CourseCard/>
 
     </>
   )
