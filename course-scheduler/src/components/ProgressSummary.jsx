@@ -1,7 +1,7 @@
 function ProgressSummary(props) {
     return (
         <>
-            <div className="card" style="max-width: 320px;">
+            <div className="card">
                 <div className="card-body">
                     <h4 className="card-title">Example card title</h4>
                     <div className="progress">
