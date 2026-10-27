@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import {Routes, Route} from "react-router-dom";
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 import NavBar from "./components/NavBar.jsx";
 import ProgressSummary from "./components/ProgressSummary.jsx";
 import CourseCard from "./components/CourseCard.jsx";
@@ -14,13 +14,14 @@ function App() {
   return (
     <>
       <NavBar />
-        <h1>
-          CS Developer Tracks
-          hello
+        <h1 style={{ textAlign: "left", fontSize: 22, color: "black", paddingLeft: 20, letterSpacing: 0}}>
+          CS Developer Track
         </h1>
-        <ProgressSummary />
-        <CourseList/>
-        <CourseCard/>
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/about" element={<AboutPage/>} />
+        </Routes>
+
 
     </>
   )

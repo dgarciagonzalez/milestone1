@@ -12,7 +12,7 @@ function CourseCard(props) {
                             <input
                                 className="form-check-input"
                                 type="checkbox"
-                                id="completed
+                                id="completed"
                             />
                             <label className="form-check-label" htmlFor="completed">
                                 Mark as completed
