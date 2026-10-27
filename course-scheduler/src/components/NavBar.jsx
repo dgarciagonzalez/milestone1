@@ -3,7 +3,7 @@ function NavBar() {
     return (
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
             <div className='container-fluid'>
-                <a className='navbar-brand' href='#'>Books 4 U</a>
+                <a className='navbar-brand' href='#'>Aurora CS Course Scheduler</a>
 
                 <button className='navbar-toggler' type='button'
                         data-bs-toggle='collapse'
