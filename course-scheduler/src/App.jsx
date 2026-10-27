@@ -14,6 +14,9 @@ function App() {
   return (
     <>
       <NavBar />
+        <h1>
+           CS Developer Track
+        </h1>
         <ProgressSummary />
         <CourseList/>
         <CourseCard/>
