@@ -15,13 +15,11 @@ function App() {
     console.log("Courses:", data);
   return (
     <>
-
       <NavBar />
         <Routes>
           <Route path="/" element={<HomePage courses={data}/>} />
           <Route path="/about" element={<AboutPage/>} />
         </Routes>
-
 
     </>
   )

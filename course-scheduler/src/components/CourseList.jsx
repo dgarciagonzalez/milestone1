@@ -26,11 +26,28 @@ function CourseList(props) {
     const completedCourses = completedIds.length;
     const remainingCourses = totalCourses - completedCourses;
 
+    const availableCourses = props.courses?.filter((course) =>
+        !completedIds.includes(course.id) &&
+        course.prerequisites.every((prereqID) => completedIds.includes(prereqID))
+    )
+
+    const lockedCourses = props.courses?.filter((course)=>
+        !completedIds.includes(course.id) &&
+        !course.prerequisites.every((prereqID) => completedIds.includes(prereqID))
+    )
+
     const progress = totalCourses > 0 ? ((completedCourses/totalCourses) * 100).toFixed() : 0;
 
     return (
         <>
-            <ProgressSummary completed={completedCourses} remaining={remainingCourses} total={totalCourses} progress={progress}/>
+            <ProgressSummary
+                completed={completedCourses}
+                available={availableCourses?.length ?? 0}
+                locked={lockedCourses?.length ?? 0}
+                remaining={remainingCourses}
+                total={totalCourses}
+                progress={progress}
+            />
             <div className="d-flex justify-content-between align-items-center">
                 <div className="btn-group" style={btnGroupStyle}>
                     {options.map((option) => (
@@ -46,12 +63,27 @@ function CourseList(props) {
                 </div>
                 <button className="btn btn-success" >Save</button>
             </div>
+
             <div className="row g-3 mt-3">
-                {filteredCourses?.map((course) => (
-                    <div className="col-12 col-md-6 col-lg-4" key={course.id}>
-                        <CourseCard course={course} courses={props.courses} checked={completedIds.includes(course.id)} onChange={(isChecked) => handleToggleCourse(course.id, isChecked)} />
-                    </div>
-                ))}
+                {filteredCourses?.map((course)=>{
+                    const isCompleted = completedIds.some((id) => String(id) === String(course.id));
+
+                    const isAvailable = (course.prerequisites ?? [])
+                        .every((prereqID) => completedIds.some((id) => String(id) === String(prereqID)));
+
+                    return(
+                        <div className="col-12 col-md-6 col-lg-4" key={course.id}>
+                            <CourseCard
+                                course={course}
+                                courses={props.courses}
+                                checked={completedIds.includes(course.id)}
+                                locked={!isCompleted && !isAvailable}
+                                onChange={(isChecked) => handleToggleCourse(course.id, isChecked)}
+                            />
+                        </div>
+                    )
+
+                })}
             </div>
         </>
     )

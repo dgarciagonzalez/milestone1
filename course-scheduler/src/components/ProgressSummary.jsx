@@ -3,7 +3,7 @@ function ProgressSummary(props) {
         <>
             <div className="card">
                 <div className="card-body">
-                    <h4 className="card-title">{props.completed} of {props.total} course completed Y available Z locked </h4>
+                    <h4 className="card-title">{props.completed} of {props.total} course completed {props.available} available {props.locked} locked </h4>
                     <div className="progress">
                         <div
                             className="progress-bar bg-success"

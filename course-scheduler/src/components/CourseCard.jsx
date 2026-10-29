@@ -1,10 +1,23 @@
 function CourseCard(props) {
     return (
         <>
-            <div className="card" style={{width: "100%"}}>
-                <div className="card-header">
-                    {props.course.number}
+            <div className={`card ${props.checked 
+                ? "bg-success-subtle border-success" 
+                : props.locked 
+                    ? "bg-secondary-subtle border-secondary" 
+                    : "border-primary" }`}
+                 style={{width: "100%"}}>
+
+                <div className="card-header d-flex justify-content-between align-items-center">
+                    <span>{props.course.number}</span>
+
+                    <span
+                        className={`badge ${props.checked ? "bg-success" : props.locked ? "bg-secondary" : "bg-primary"}`}
+                    >
+                        {props.checked ? "Completed" : props.locked ? "Locked" : "Available"}
+                    </span>
                 </div>
+
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
                         <h5 >{props.course.title}</h5>
@@ -23,6 +36,7 @@ function CourseCard(props) {
                                 type="checkbox"
                                 id={props.course.id}
                                 checked={props.checked}
+                                disabled={props.locked}
                                 onChange={(e) => props.onChange(e.target.checked)}
                             />
                             <label className="form-check-label" htmlFor={props.course.id}>
