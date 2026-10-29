@@ -10,16 +10,22 @@ function CourseCard(props) {
                         <h5 >{props.course.title}</h5>
                         <p style = {{fontSize: "85%", color : "Grey"}}>{props.course.credits} credits</p>
                         <p>{props.course.description}</p>
-                        <p><span style={{fontWeight: "bold", fontSize: "85%"}}>Prerequisites:</span> {props.course.prerequisites}</p>
+                        <p><span style={{fontWeight: "bold", fontSize: "85%"}}>Prerequisites:</span> {props.course.prerequisites?.length > 0 ?
+                            props.course.prerequisites.map(prereqId =>
+                                    props.courses.find(c => String(c.id) === String(prereqId))?.title
+                                ).join(", ")
+                            : "None"}</p>
                     </li>
                     <li className="list-group-item">
                         <div className="form-check">
                             <input
                                 className="form-check-input"
                                 type="checkbox"
-                                id="completed"
+                                id={props.course.id}
+                                checked={props.checked}
+                                onChange={(e) => props.onChange(e.target.checked)}
                             />
-                            <label className="form-check-label" htmlFor="completed">
+                            <label className="form-check-label" htmlFor={props.course.id}>
                                 Completed
                             </label>
                         </div>
