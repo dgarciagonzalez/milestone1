@@ -4,12 +4,11 @@ import CourseCard from '../components/CourseCard.jsx';
 
 
 
-function HomePage() {
+function HomePage(props) {
     return (
         <div className="container mt-9">
             <ProgressSummary />
-            <CourseList />
-            <CourseCard />
+            <CourseList courses={props.courses}/>
         </div>
     );
 }

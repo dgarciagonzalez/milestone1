@@ -1,12 +1,16 @@
-.course-btn {
-    background-color: white;
-    color: lightgray;
-    border: 2px solid lightgray;
-}
-
 .course-btn-selected {
     background-color: black;
     color: white;
-    border: 1px solid black;
+    border-color: black;
 }
 
+.course-btn {
+    background-color: white;
+    color: grey;
+    border-color: grey;
+}
+.course-btn:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+}

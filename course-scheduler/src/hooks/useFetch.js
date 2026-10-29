@@ -8,7 +8,7 @@ function useFetch(url){
     useEffect(()=>{
         fetch(url)
             .then(resp => {
-                if(!resp.pk){
+                if(!resp.ok){
                     throw new Error(`HTTP error: ${resp.status}`)
                 }
                 return resp.json()
