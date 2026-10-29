@@ -17,9 +17,6 @@ function App() {
     <>
 
       <NavBar />
-        <h1 style={{ textAlign: "left", fontSize: 22, color: "black", paddingLeft: 20, letterSpacing: 0}}>
-          CS Developer Track
-        </h1>
         <Routes>
           <Route path="/" element={<HomePage courses={data}/>} />
           <Route path="/about" element={<AboutPage/>} />
