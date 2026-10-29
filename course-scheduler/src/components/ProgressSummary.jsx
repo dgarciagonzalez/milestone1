@@ -3,17 +3,17 @@ function ProgressSummary(props) {
         <>
             <div className="card">
                 <div className="card-body">
-                    <h4 className="card-title">X of X course completed Y available Z locked </h4>
+                    <h4 className="card-title">{props.completed} of {props.total} course completed Y available Z locked </h4>
                     <div className="progress">
                         <div
                             className="progress-bar bg-success"
                             role="progressbar"
-                            style={{width: "25%"}}
-                            aria-valuenow="25"
+                            style={{width: `${props.progress}%`}}
+                            aria-valuenow={props.progress}
                             aria-valuemin="0"
                             aria-valuemax="100"
                         >
-                            25%
+                            {props.progress}%
                         </div>
                     </div>
                 </div>

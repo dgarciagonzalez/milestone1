@@ -1,5 +1,6 @@
 import {useState} from "react";
 import CourseCard from "./CourseCard";
+import ProgressSummary from "./ProgressSummary";
 
 function CourseList(props) {
     const btnGroupStyle = {
@@ -21,8 +22,15 @@ function CourseList(props) {
         return true;
     });
 
+    const totalCourses = props.courses?.length ?? 0;
+    const completedCourses = completedIds.length;
+    const remainingCourses = totalCourses - completedCourses;
+
+    const progress = totalCourses > 0 ? ((completedCourses/totalCourses) * 100).toFixed() : 0;
+
     return (
         <>
+            <ProgressSummary completed={completedCourses} remaining={remainingCourses} total={totalCourses} progress={progress}/>
             <div className="d-flex justify-content-between align-items-center">
                 <div className="btn-group" style={btnGroupStyle}>
                     {options.map((option) => (
