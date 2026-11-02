@@ -10,17 +10,29 @@ import CourseList from "./components/CourseList.jsx";
 import useFetch from "./hooks/useFetch";
 
 function App() {
+
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL
+
   const [count, setCount] = useState(0)
-    const { data } = useFetch("http://localhost:3000/courses");
-    console.log("Courses:", data);
+  const { data, isPending, error } = useFetch(`${BASE_URL}/courses`);
+  console.log("Courses:", data);
+
   return (
     <>
       <NavBar />
         <Routes>
-          <Route path="/" element={<HomePage courses={data}/>} />
-          <Route path="/about" element={<AboutPage/>} />
+          <Route path="/" element={
+            <HomePage
+                courses={data}
+                isPending={isPending}
+                error={error}
+            />}
+          />
+          <Route
+              path="/about"
+              element={<AboutPage/>}
+          />
         </Routes>
-
     </>
   )
 }

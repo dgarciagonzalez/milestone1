@@ -3,9 +3,7 @@ function CourseCard(props) {
         <>
             <div className={`card ${props.checked 
                 ? "bg-success-subtle border-success" 
-                : props.locked 
-                    ? "bg-secondary-subtle border-secondary" 
-                    : "border-primary" }`}
+                : props.locked ? "bg-secondary-subtle border-secondary" : "border-primary" }`}
                  style={{width: "100%"}}>
 
                 <div className="card-header d-flex justify-content-between align-items-center">
