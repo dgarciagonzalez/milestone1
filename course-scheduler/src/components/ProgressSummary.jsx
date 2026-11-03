@@ -3,9 +3,25 @@ function ProgressSummary(props) {
         <>
             <div className="card">
                 <div className="card-body">
-                    <h4 className="card-title">
-                        {props.completed} of {props.total} course completed {props.available} available {props.locked} locked
+                    <h4 className="card-title mb-3">
+                        <span className="text-success fs-4 fw-bold">
+                            {props.completed}
+                        </span>
+                        <span className="fs-6 text-secondary">
+                            { ` of ${props.total} courses completed `}
+                        </span>
+
+                        <span className="text-primary fs-4 fw-bold">
+                            {props.available}
+                        </span>
+                        <span className="fs-6 text-secondary"> {` available`} </span>
+
+                        <span className="text-secondary fs-4 fw-bold">
+                            {props.locked}
+                        </span>
+                        <span className="fs-6 text-secondary"> locked</span>
                     </h4>
+
                     <div className="progress">
                         <div
                             className="progress-bar bg-success"
