@@ -70,19 +70,31 @@ function CourseList(props) {
         return true;
     });
 
-    const totalCourses = props.courses?.length ?? 0;
-    const completedCourses = completedIds.length;
+    const courses = props.courses ?? []
+    const completedIdSet = new Set(completedIds.map((id) => String(id)));
+
+
+    const totalCourses = courses.length;
+
+    const completedCourses = courses.filter((course) =>
+        completedIdSet.has(String(course.id))
+    ).length;
+
     const remainingCourses = totalCourses - completedCourses;
 
-    const availableCourses = props.courses?.filter((course) =>
-        !completedIds.includes(course.id) &&
-        course.prerequisites.every((prereqID) => completedIds.includes(prereqID))
-    )
+    const availableCourses = courses.filter((course) =>
+        !completedIdSet.has(String(course.id)) &&
+        (course.prerequisites ?? []).every((prereqID) =>
+            completedIdSet.has(String(prereqID))
+        )
+    );
 
-    const lockedCourses = props.courses?.filter((course)=>
-        !completedIds.includes(course.id) &&
-        !course.prerequisites.every((prereqID) => completedIds.includes(prereqID))
-    )
+    const lockedCourses = courses.filter((course) =>
+        !completedIdSet.has(String(course.id)) &&
+        !(course.prerequisites ?? []).every((prereqID) =>
+            completedIdSet.has(String(prereqID))
+        )
+    );
 
     const progress = totalCourses > 0 ? ((completedCourses/totalCourses) * 100).toFixed() : 0;
 

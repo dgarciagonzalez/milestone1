@@ -25,7 +25,7 @@ function HomePage(props) {
 
                 {props.error && <p>Error: {props.error}</p>}
 
-                {!props.isPending & !props.error && (
+                {!props.isPending && !props.error && (
                     <CourseList courses={props.courses}/>
                 )}
 
