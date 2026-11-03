@@ -19,7 +19,7 @@ function HomePage(props) {
                 CS Developer Track
             </h1>
 
-            <div className="container mt-9">
+            <div className="container mt-4">
 
                 {props.isPending && <p>Loading courses...</p>}
 

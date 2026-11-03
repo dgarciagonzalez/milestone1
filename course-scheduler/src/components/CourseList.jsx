@@ -109,7 +109,7 @@ function CourseList(props) {
                 progress={progress}
             />
 
-            <div className="d-flex justify-content-between align-items-center gap-2">
+            <div className="d-flex justify-content-between align-items-center gap-2 mt-3 mb-3 flex-nowrap">
                 <div className="btn-group" style={btnGroupStyle}>
                     {options.map((option) => (
                         <button
