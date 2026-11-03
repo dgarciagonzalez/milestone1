@@ -23,7 +23,44 @@ function CourseList(props) {
 
     const handleToggleCourse = (courseId, isChecked) => {
         setSaveMessage("");
-        setCompletedIds((prevIds) => isChecked ? [...prevIds, courseId] : prevIds.filter((id) => id !== courseId));
+        setCompletedIds((prevIds) => {
+            if (isChecked) {
+                return [...prevIds, courseId];
+            }
+
+            let updatedIds = prevIds.filter(
+                (id) => String(id) !== String(courseId)
+            );
+
+            let changed = true;
+
+            while (changed) {
+                changed = false;
+
+                props.courses.forEach((course) => {
+                    const isCompleted = updatedIds.some(
+                        (id) => String(id) === String(course.id)
+                    );
+
+                    const hasMissingPrerequisite =
+                        !course.prerequisites.every((prereqID) =>
+                            updatedIds.some(
+                                (id) => String(id) === String(prereqID)
+                            )
+                        );
+
+                    if (isCompleted && hasMissingPrerequisite) {
+                        updatedIds = updatedIds.filter(
+                            (id) => String(id) !== String(course.id)
+                        );
+
+                        changed = true;
+                    }
+                });
+            }
+
+            return updatedIds;
+        });
     };
 
     const filteredCourses = props.courses?.filter((course) => {
