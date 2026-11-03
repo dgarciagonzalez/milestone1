@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import CourseCard from "./CourseCard";
 import ProgressSummary from "./ProgressSummary";
 
@@ -9,9 +9,20 @@ function CourseList(props) {
 
     const [selected, setSelected] = useState("All Courses");
     const options = ["All Courses", "Completed Only", "Remaining"];
-    const [completedIds, setCompletedIds] = useState([]);
+    const [completedIds, setCompletedIds] = useState(() => {
+        const saved = localStorage.getItem("completedIds");
+        return saved ? JSON.parse(saved) : [];
+    });
+
+    const [saveMessage, setSaveMessage] = useState("");
+
+    const handleSave = () => {
+        localStorage.setItem("completedIds", JSON.stringify(completedIds));
+        setSaveMessage("Progress saved.");
+    };
 
     const handleToggleCourse = (courseId, isChecked) => {
+        setSaveMessage("");
         setCompletedIds((prevIds) => isChecked ? [...prevIds, courseId] : prevIds.filter((id) => id !== courseId));
     };
 
@@ -48,7 +59,8 @@ function CourseList(props) {
                 total={totalCourses}
                 progress={progress}
             />
-            <div className="d-flex justify-content-between align-items-center">
+
+            <div className="d-flex justify-content-between align-items-center gap-2">
                 <div className="btn-group" style={btnGroupStyle}>
                     {options.map((option) => (
                         <button
@@ -61,7 +73,23 @@ function CourseList(props) {
                         </button>
                     ))}
                 </div>
-                <button className="btn btn-success" >Save</button>
+
+                <div className="d-flex align-items-center gap-2">
+
+                    {saveMessage && (
+                        <span className="text-success">
+            {saveMessage}
+        </span>
+                    )}
+
+                    <button
+                        className="btn btn-success"
+                        onClick={handleSave}
+                    >
+                        Save
+                    </button>
+
+                </div>
             </div>
 
             <div className="row g-3 mt-3">

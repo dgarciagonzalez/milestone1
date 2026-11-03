@@ -1,9 +1,15 @@
 function CourseCard(props) {
     return (
         <>
-            <div className={`card ${props.checked 
-                ? "bg-success-subtle border-success" 
-                : props.locked ? "bg-secondary-subtle border-secondary" : "border-primary" }`}
+            <div className={`card position-relative ${
+                props.locked ? "locked-card" : props.checked ? "completed-card" : ""
+            } ${
+                props.checked
+                    ? "bg-success-subtle border-success"
+                    : props.locked
+                        ? "bg-secondary-subtle border-secondary"
+                        : "border-primary"
+            }`}
                  style={{width: "100%"}}>
 
                 <div className="card-header d-flex justify-content-between align-items-center">
@@ -12,7 +18,7 @@ function CourseCard(props) {
                     <span
                         className={`badge ${props.checked ? "bg-success" : props.locked ? "bg-secondary" : "bg-primary"}`}
                     >
-                        {props.checked ? "Completed" : props.locked ? "Locked" : "Available"}
+                        {props.checked ? "Completed" : props.locked ? "Locked 🔒" : "Available"}
                     </span>
                 </div>
 
